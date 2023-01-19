@@ -3,11 +3,9 @@ import React from 'react'
 import { ButtonGradient, Gradient } from '../commons'
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-
 const image = require('../assets/images/card.png')
 const Welcome = () => {
     const navigation = useNavigation<StackNavigationProp<any>>()
-
     return (
         <Gradient fromColor='#285CA3' toColor='#516AD3'>
             <View style={styles.container}>

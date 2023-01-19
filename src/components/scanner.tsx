@@ -1,20 +1,39 @@
-import { StyleSheet, Text, View, TouchableOpacity, Linking } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import React, { useState, useContext } from 'react'
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import { ButtonGradient } from '../commons';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+import { TokenContext } from '../contexts/token-context';
+const plusImage = require('../assets/images/plus.png')
 const Scanner = () => {
     const [URL, setURL] = useState('')
+    const navigation = useNavigation<StackNavigationProp<any>>()
     const onSuccess = (e: any) => {
         setURL(e.data)
     };
+    const passToBuy = () => {
+        navigation.navigate('Shop', { URL })
+    }
+    const passToAdd = () => {
+        navigation.navigate('Add', { URL })
+    }
+    const { role } = useContext(TokenContext)
     return (
         <QRCodeScanner
             onRead={onSuccess}
             flashMode={RNCamera.Constants.FlashMode.auto}
             showMarker reactivate
+            topViewStyle={{ zIndex: 999 }}
+            topContent={
+                URL !== '' ?
+                    role === 'admin' && <ButtonGradient text='Add Quantity' fnc={() => passToAdd()} />
+                    : <></>}
             bottomContent={
-                <ButtonGradient text='Confirm Product' fnc={() => console.log(URL)} />
+                URL !== '' ? <>
+                    <ButtonGradient text='Buy Product' fnc={() => passToBuy()} />
+                </> : <></>
             }
         />
     )

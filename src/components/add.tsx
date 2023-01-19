@@ -50,7 +50,7 @@ const Add = () => {
                 <Text style={styles.text}>{product?.name}</Text>
                 <Text style={styles.text}>{product?.quantity}</Text>
                 <InputGradient text='Quantity' onChangeText={text => setQuantity(Number(text))} keyboardType='number-pad' />
-                <ButtonGradient text='Buy product' fnc={() => addProduct()} />
+                <ButtonGradient text='Add product' fnc={() => addProduct()} />
             </View>
         </Gradient>
     )

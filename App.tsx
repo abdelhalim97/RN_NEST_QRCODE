@@ -23,9 +23,9 @@ const App = () => {
               :
               <>
                 {role === 'admin' ? <Stack.Screen name="Generator" component={Generator} options={{ headerShown: true }} /> : <></>}
+                <Stack.Screen name="Scanner" component={Scanner} options={{ headerShown: true }} />
                 <Stack.Screen name="Shop" component={Shop} options={{ headerShown: true }} />
                 <Stack.Screen name="Add" component={Add} options={{ headerShown: true }} />
-                <Stack.Screen name="Scanner" component={Scanner} options={{ headerShown: true }} />
               </>
             }
           </Stack.Navigator>
